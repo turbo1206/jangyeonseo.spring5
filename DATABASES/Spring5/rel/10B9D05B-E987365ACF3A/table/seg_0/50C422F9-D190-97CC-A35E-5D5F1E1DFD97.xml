@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="50C422F9-D190-97CC-A35E-5D5F1E1DFD97" name="TBL_ATTACH">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_ATTACHv2</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 04:58:27 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<ordsAlias>table_17</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SAVE_FILE_NAME" id="7EB2F3E4-D364-672E-096F-CE5D9D0EB13B">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_ATTACHv2</sourceObjSchema>
+<sourceObjName>SAVE_FILE_NAME</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 04:59:43 UTC</createdTime>
+<commentInRDBMS><![CDATA[물리적으로저장되는파일명(해시데이터)]]></commentInRDBMS>
+<ownerDesignName>Spring5</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REAL_FILE_NAME" id="8CAFA419-25C6-B356-CD87-16CEC32F9885">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_ATTACHv2</sourceObjSchema>
+<sourceObjName>REAL_FILE_NAME</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 05:01:07 UTC</createdTime>
+<commentInRDBMS><![CDATA[한글파일명UI에서보이게]]></commentInRDBMS>
+<ownerDesignName>Spring5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_DATE" id="55F82DB5-D6CC-85C0-E40D-CA528C1B0FB0">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_ATTACHv2</sourceObjSchema>
+<sourceObjName>REG_DATE</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 05:04:27 UTC</createdTime>
+<commentInRDBMS><![CDATA[등록일자]]></commentInRDBMS>
+<ownerDesignName>Spring5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BNO" id="64560AF5-1DD0-13A0-A71D-F41DC25B5096">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_ATTACHv2</sourceObjSchema>
+<sourceObjName>BNO</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 05:06:31 UTC</createdTime>
+<commentInRDBMS><![CDATA[부모테이블의고유키]]></commentInRDBMS>
+<ownerDesignName>Spring5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="851CB955-5CD1-4014-DE9F-55983AF33B97" referredColumn="CB31FBA1-13A8-70A7-9436-40F5430B8799"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AE07C67E-B44E-52E8-E4BF-C0BC9D503E8C" name="TBL_ATTACHv2_PK">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_ATTACHv2_PK</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 05:00:01 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7EB2F3E4-D364-672E-096F-CE5D9D0EB13B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D03116D-11BB-5EB6-2CC6-F7A6F3362751" name="TBL_ATTACHv2_TBL_BOARD_FK">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 05:07:12 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64560AF5-1DD0-13A0-A71D-F41DC25B5096"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C42170B-F9B4-1213-AE5E-F136FD20F479" name="TBL_REPLY">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_REPLY</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:23:43 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글관리테이블]]></commentInRDBMS>
@@ -10,6 +13,9 @@
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="RNO" id="E26D4947-4FD0-DA8D-A7AF-C405F05E9535">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>RNO</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:25:16 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글고유번호(자동증가AI)]]></commentInRDBMS>
@@ -22,6 +28,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="REPLY_TEXT" id="4A40834E-0A66-7D30-C938-57BDC4EA56B1">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>REPLY_TEXT</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:37:04 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글내용]]></commentInRDBMS>
@@ -35,6 +44,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="REPLYER" id="8551307C-C837-4A48-DDE4-75DFAC0B03EA">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>REPLYER</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:37:52 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글작성자ID]]></commentInRDBMS>
@@ -48,6 +60,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="REG_DATE" id="B4BD7A58-9D78-DA30-44D7-25AA8F655A73">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>REG_DATE</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:38:26 UTC</createdTime>
 <commentInRDBMS><![CDATA[생성일]]></commentInRDBMS>
@@ -60,6 +75,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="UPDATE_DATE" id="07370F37-7705-41AC-A6D5-CDC64C2E81F7">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>UPDATE_DATE</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:39:00 UTC</createdTime>
 <commentInRDBMS><![CDATA[등록일]]></commentInRDBMS>
@@ -71,25 +89,30 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TBL_BOARD_BNO" id="377DCB43-1BA2-413B-6531-277EF39134C4">
+<Column name="BNO" id="1E4F41C5-7844-DD64-791E-ACB7ABDD19FF">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>BNO</sourceObjName>
 <createdBy>turbo</createdBy>
-<createdTime>2021-05-31 03:46:44 UTC</createdTime>
-<commentInRDBMS><![CDATA[게시물관리고유값외래키]]></commentInRDBMS>
+<createdTime>2021-05-31 04:56:20 UTC</createdTime>
 <ownerDesignName>Spring5</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>11</dataTypePrecision>
-<ownDataTypeParameters>,11,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="7706DD9B-2BB7-7590-C19A-8722740B5788" referredColumn="CB31FBA1-13A8-70A7-9436-40F5430B8799"/>
+<colAssociation fkAssociation="47210B80-5798-455B-F30D-EF3C2EB37C26" referredColumn="CB31FBA1-13A8-70A7-9436-40F5430B8799"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="CBF5BED0-81C3-A97A-7ABD-7DD0BE92E406" name="TBL_REPLY_PK">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_REPLY_PK</sourceObjName>
 <createdBy>turbo</createdBy>
 <createdTime>2021-05-31 03:25:26 UTC</createdTime>
 <ownerDesignName>Spring5</ownerDesignName>
@@ -100,14 +123,14 @@
 <colUsage columnID="E26D4947-4FD0-DA8D-A7AF-C405F05E9535"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="50C27627-E83E-BFC7-8C1E-A73726A4FE2A" name="TBL_REPLY_TBL_BOARD_FK">
+<ind_PK_UK id="1296FD4F-AB09-EB44-CF66-06ECFE79AA54" name="TBL_REPLY_TBL_BOARD_FK">
 <createdBy>turbo</createdBy>
-<createdTime>2021-05-31 03:47:39 UTC</createdTime>
+<createdTime>2021-05-31 04:56:25 UTC</createdTime>
 <ownerDesignName>Spring5</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="377DCB43-1BA2-413B-6531-277EF39134C4"/>
+<colUsage columnID="1E4F41C5-7844-DD64-791E-ACB7ABDD19FF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

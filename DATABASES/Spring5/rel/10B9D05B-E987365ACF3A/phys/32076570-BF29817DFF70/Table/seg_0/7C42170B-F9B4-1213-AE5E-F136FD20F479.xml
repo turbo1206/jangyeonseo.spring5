@@ -14,9 +14,9 @@
 <createdTime>2021-05-31 03:39:00 UTC</createdTime>
 <ownerDesignName>Spring5</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="TBL_BOARD_BNO" id="377DCB43-1BA2-413B-6531-277EF39134C4">
+<ColumnProxy name="BNO" id="1E4F41C5-7844-DD64-791E-ACB7ABDD19FF">
 <createdBy>turbo</createdBy>
-<createdTime>2021-05-31 03:46:44 UTC</createdTime>
+<createdTime>2021-05-31 04:56:20 UTC</createdTime>
 <ownerDesignName>Spring5</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="REPLY_TEXT" id="4A40834E-0A66-7D30-C938-57BDC4EA56B1">
@@ -41,9 +41,9 @@
 </ColumnProxy>
 </columnProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TBL_REPLY_TBL_BOARD_FK" id="50C27627-E83E-BFC7-8C1E-A73726A4FE2A">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TBL_REPLY_TBL_BOARD_FK" id="1296FD4F-AB09-EB44-CF66-06ECFE79AA54">
 <createdBy>turbo</createdBy>
-<createdTime>2021-05-31 03:47:39 UTC</createdTime>
+<createdTime>2021-05-31 04:56:25 UTC</createdTime>
 <ownerDesignName>Spring5</ownerDesignName>
 </ForeignKey>
 </foreignKeys>

@@ -26,6 +26,7 @@
 <createdTime>2021-05-31 02:29:13 UTC</createdTime>
 <commentInRDBMS><![CDATA[한글게시판이름]]></commentInRDBMS>
 <ownerDesignName>Spring5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>

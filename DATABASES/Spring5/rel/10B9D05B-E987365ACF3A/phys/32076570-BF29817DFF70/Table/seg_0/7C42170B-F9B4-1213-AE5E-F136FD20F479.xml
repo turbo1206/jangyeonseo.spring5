@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="TBL_REPLY" directorySegmentName="seg_0" id="7C42170B-F9B4-1213-AE5E-F136FD20F479">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:30:44 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="UPDATE_DATE" id="07370F37-7705-41AC-A6D5-CDC64C2E81F7">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:39:00 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TBL_BOARD_BNO" id="377DCB43-1BA2-413B-6531-277EF39134C4">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:46:44 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REPLY_TEXT" id="4A40834E-0A66-7D30-C938-57BDC4EA56B1">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:37:04 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REPLYER" id="8551307C-C837-4A48-DDE4-75DFAC0B03EA">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:37:52 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REG_DATE" id="B4BD7A58-9D78-DA30-44D7-25AA8F655A73">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:38:26 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RNO" id="E26D4947-4FD0-DA8D-A7AF-C405F05E9535">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:30:44 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TBL_REPLY_TBL_BOARD_FK" id="50C27627-E83E-BFC7-8C1E-A73726A4FE2A">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:47:39 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TBL_REPLY_PK" id="CBF5BED0-81C3-A97A-7ABD-7DD0BE92E406">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:30:44 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="XE" directorySegmentName="seg_0" id="29D02C70-31C3-C65F-26CE-3591C6BE49F2">
+<sourceConnName>XE</sourceConnName>
+<sourceObjName>XE</sourceObjName>
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:30:44 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<schemaObject>D0AAB158-6346-CA05-0EF2-F094A1CFBAF1</schemaObject>
+<defTableSpace>F050C6C3-776B-F59E-3E00-7957FA78ED9B</defTableSpace>
+<privileges>CREATE DIMENSION, CREATE MATERIALIZED VIEW, CREATE SEQUENCE, CREATE PROCEDURE, CREATE ANY CONTEXT, CREATE TYPE, CREATE SYNONYM, CREATE SESSION, CREATE JOB, CREATE VIEW, CREATE TABLE, CREATE OPERATOR, CREATE INDEXTYPE, CREATE TRIGGER, CREATE CLUSTER</privileges>
+<quotaItems>
+<QuotaItem class="oracle.dbtools.crest.model.design.storage.oracle.v10g.QuotaItemOraclev10g" name="QuotaItem1" id="6AAAD88E-F1BE-6ADA-64D8-42D137B7D54A">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:30:45 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+</QuotaItem>
+<QuotaItem class="oracle.dbtools.crest.model.design.storage.oracle.v10g.QuotaItemOraclev10g" name="QuotaItem2" id="EC2A04AD-258A-1992-2FEC-FA4925432310">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:30:50 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<tableSpace>F050C6C3-776B-F59E-3E00-7957FA78ED9B</tableSpace>
+</QuotaItem>
+</quotaItems>
+</UserOraclev10g>

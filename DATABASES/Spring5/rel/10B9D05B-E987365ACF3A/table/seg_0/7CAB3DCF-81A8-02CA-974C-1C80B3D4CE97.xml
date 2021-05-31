@@ -109,6 +109,22 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="TBL_BOARD_TYPE_BOARD_TYPE" id="6AD1ACB3-000F-934B-943A-A498842B6369">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:14:16 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="456F887A-0D6F-155A-CC27-3671EB3A8298" referredColumn="BB8AB493-C196-B415-591C-08B0E1F58B35"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="BD972BB4-8227-D3DA-CCD2-A2B70416A17A" name="TBL_BOARD_PK">
@@ -120,6 +136,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="CB31FBA1-13A8-70A7-9436-40F5430B8799"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="268BD97C-29A8-52C1-CC27-39B82F9A2C76" name="TBL_BOARD_TBL_BOARD_TYPE_FK">
+<createdBy>turbo</createdBy>
+<createdTime>2021-05-31 03:14:16 UTC</createdTime>
+<ownerDesignName>Spring5</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6AD1ACB3-000F-934B-943A-A498842B6369"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

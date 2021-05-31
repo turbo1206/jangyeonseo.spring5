@@ -13,4 +13,15 @@
 <diagramColor>-1</diagramColor>
 <display>false</display>
 <notation>1</notation>
+<showComments>true</showComments>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="29457924-A608-0295-3E56-635ACD011941" otype="Table" vid="BF73B9F0-DDB4-B0B5-D0A7-AA8549C3CEC3">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="223" y="185" width="366" height="112"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="7CAB3DCF-81A8-02CA-974C-1C80B3D4CE97" otype="Table" vid="4E8F15E2-B780-016C-A645-BDC9C5A12B42">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="217" y="347" width="368" height="187"/>
+</OView>
+</objectViews>
 </Diagram>

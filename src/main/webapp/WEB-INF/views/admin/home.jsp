@@ -160,5 +160,4 @@
   </div>
   <!-- /.content-wrapper -->
 <!-- 여기까지 메인 콘텐츠 영역 -->
-
 <%@ include file="./include/footer.jsp" %>

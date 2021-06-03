@@ -13,7 +13,10 @@
 - 작업비중(시간)=관리단프로그램(70%)+사용자단(30%)
 - 오라클에서 오라클연동 순서 2가지:
 - 1. jdbc(Java DataBase Connection) 확장모듈 pom에 추가
-- 2. 오라클 접속 드라이버 확장 모듈을 pom에 추가X 직접 jar 파일을 추가. 
+- 2. 오라클 접속 드라이버 확장 모듈을 pom에 추가X 직접 jar 파일을 추가.
+- root-context.xml 파일에 오라클 커넥션 빈(스프링 클래스)을 추가.
+- 스프링관리하는 클래스를 추가하는 방법 2가지 : @Controller,@Repositiory,@Service,@Component
+- 스프링이 관리하는 클래스를 추가하는 방법2-2: -context.xml에서 빈(bean태그)을 추가하면, 스프링 클래스 됨.
 - JUnit테스트 : 오라클 연동한 후 회원관리부분 CRUD 테스트 진행 예정.
 - 오라클4장부터 CRUD 실습 예정.
 - admin 회원관리(jsp디자인)부터 프로그램 작업 시작예정.

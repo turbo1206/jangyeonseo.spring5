@@ -19,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 /**
  * 이 클래스는 오라클과 연동해서 CRUD를 테스트하는 클래스 입니다.
  * 과장(이사,팀장) JUnit CRUD까지 만들어서 일반사원에게 공개 + 회원관리
- * @author 장연서
+ * @author 김일국
  *
  */
 //RunWith인터페이스 현재클래스가 Junit실행클래스라고 명시
@@ -34,31 +34,35 @@ public class DataSourceTest {
 	@Inject //인젝트는 스프링에서 객체를 만드는 방법, 이전 자바에서는 new 키워드로 객체를 만들었고... 
 	DataSource dataSource;//Inject로 객체를 만들면 메모리 관리를 스프링이 대신해 줌.
 	//Inject 자바8부터 지원, 그럼, 이전 자바7에서 @Autowired 로 객체를 만들었슴
+	
 	@Test
 	public void oldQueryTest() throws Exception {
-		//스프링빈을 사용하지 않을 때 예전 방식: 코딩테스트에서는 스프링 설정을 안쓰고, 직접 DB 아이디/암호 입력
+		//스프링빈을 사용하지 않을때 예전 방식: 코딩테스트에서는 스프링설정을 안쓰고, 직접 DB 아이디/암호 입력
 		Connection connection = null;
-		connection =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE","XE","apmsetup");
+		connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE","XE","apmsetup");
 		logger.debug("데이터베이스 직접 접속이 성공 하였습니다. DB종류는 "+ connection.getMetaData().getDatabaseProductName());
-		//직접 쿼리를 날립니다. 날리기전 쿼리문자 객체생성 statement
+		//직접쿼리를 날립니다. 날리기전 쿼리문장 객체생성statement
 		Statement stmt = connection.createStatement();
 		//위 쿼리문장객체를 만드는 이유? 보안(SQL인젝션공격을 방지)
 		//stmt객체가 없으면, 개발자가 SQL인젝션 방지코딩을 넣어야 합니다.
-		//insert쿼리문장만듬(아래)
+		//Insert쿼리문장만듬(아래)
 		//예전 방식으로 더미데이터(샘플데이터)를 100개를 입력합니다.
-		for(int cnt=0;cnt<100;cnt++ ) {
-			stmt.executeQuery("insert into dept02 values("+cnt+",'디자인부','경기도')");
-		}
+		/*
+		 * for(int cnt=0;cnt<100;cnt++) {
+		 * stmt.executeQuery("insert into dept02 values("+cnt+",'디자인부','경기도')"); }
+		 */
 		//인서트,업데이트,삭제시 sql디벨러퍼에서는 커밋이 필수지만, 외부java클래스에서는 자동커밋이 됩니다.
-		stmt.executeQuery("insert into dept02 values(20,'디자인부','경기도')");
-		//테이블에 입력되어 있는 레코드셋을 select 쿼리stmt문장으로 가져옴(아래)
-		ResultSet rs = stmt.executeQuery("select * from dept02 order by deptno");//20년전 작업방식
-		//위에서 저장 된 rs객체를 반복문으로 출력(아래)
+		//테이블에 입력되어 있는 레코드셋를 select 쿼리 stmt문장으로 가져옴(아래)
+		ResultSet rs = stmt.executeQuery("select * from dept order by deptno");//20년전 작업방식
+		//위에서 저장된 rs객체를 반복문으로 출력(아래)
 		while(rs.next()) {
 			//rs객체의 레코드가 없을때까지 반복
-		    logger.debug(rs.getString("deptno")+""+rs.getString("dname")+" "+rs.getString("loc"));
+			logger.debug(rs.getString("deptno")+" "+rs.getString("dname")+
+					" "+rs.getString("loc"));
 		}
-		connection = null; //메모리 초기화
+		stmt = null;//메모리 반환
+		rs = null;//메모리 반환
+		connection = null;//메모리 초기화
 	}
 	@Test
 	public void dbConnectionTest() {

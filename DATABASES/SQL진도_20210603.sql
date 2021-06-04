@@ -34,8 +34,15 @@ SELECT * FROM emp WHERE comm IS NULL;
 -- 사원중에 커미션을 0원 받은 사람은? null 사람도 구하려면
 SELECT nvl2(comm,100,0), E.* FROM emp E WHERE NVL(comm,0) = 0;
 -- NVL2 (필드명,널이아닐때100,널일때0), NVL(필드명,널일때0)
--- 오라클은 표준쿼리 아님, ANSI 쿼리가 표준임.SELECT nvl2(comm,100,0), E.* FROM emp E WHERE NVL(comm,0) = 0;
-SELECT DECODE(comm,null,0,100),NVL2(comm,100,0), E.* FROM emp E WHERE NVL(comm,0) = 0;
+-- 오라클은 표준쿼리 아님, ANSI 쿼리가 표준임.
+SELECT
+CASE WHEN comm is null then 0
+when comm = 0 then 100
+when comm > 0 then comm
+end as "CASE출력문"
+,decode(comm,null,0,100)
+,nvl2(comm,100,0)
+,E.* FROM emp E; --WHERE NVL(comm,0) = 0;
 -- 연봉을 기준으로 정렬 sort = 순서 order by 필드명 오름차순|내림차순
 -- 서브쿼리? (select쿼리가 중복되어있는...)입니다.
 SELECT ROWNUM, E.* FROM (--테이블명

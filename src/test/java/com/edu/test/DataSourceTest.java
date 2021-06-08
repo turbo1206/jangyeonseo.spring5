@@ -48,10 +48,16 @@ public class DataSourceTest {
 	@Test
 	public void selectMember() throws Exception {
 		//회원관리 테이블에서 더미 입력한 100개의 레코드를 출력 메서드 테스트->회원관리목록이 출력
+		//현재 100명 검색기능, 페이징 기능 여기서 구현. 1페이지에서 10명씩 나오게 변경
+		//현재 몇 페이지, 검색어 임시저장 공간 -> DB에 페이징 조건, 검색 조건문
+		//변수를 2-3 이상은 바로 String 변수로 처리하지 않고, VO 만들어 사용.
+		//PageVO.java클래스를 만들어서 페이징 처리 변수와 검색어 변수 선언, Get/Set 생성
+		//PageVO 만들기 전 SQL쿼리로 가상으로 페이지를 한 번 구현해 보면서, 필요한 변수를 만들어야 합니다.
+		
 		List<MemberVO> listMember = memberService.selectMember();
 		listMember.toString();
-		//스프링 코딩 순서
 	}
+	
 	@Test
 	public void oldQueryTest() throws Exception {
 		//스프링빈을 사용하지 않을때 예전 방식: 코딩테스트에서는 스프링설정을 안쓰고, 직접 DB 아이디/암호 입력
@@ -81,6 +87,7 @@ public class DataSourceTest {
 		rs = null;//메모리 반환
 		connection = null;//메모리 초기화
 	}
+	
 	@Test
 	public void dbConnectionTest() {
 		//데이터베이스 커넥션 테스트: 설정은 root-context의 빈(스프링클래스)를 이용
@@ -93,6 +100,7 @@ public class DataSourceTest {
 		}
 		
 	}
+	
 	@Test
 	public void junitTest() {
 		//로거는 장점>조건에 따라서 출력을 조정할 수 있음.

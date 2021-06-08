@@ -9,7 +9,7 @@ import java.sql.Date;
  * @author 장연서
  *
  */
-public class MemverVO {
+public class MemberVO {
 	//ERD를 보고 멤버 변수를 만듭니다.
 	private String user_id;
 	private String user_pw;

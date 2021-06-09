@@ -24,7 +24,7 @@ public class MemberServicesImpl implements IF_MemberService {
 	
 	@Override
 	public List<MemberVO> selectMember(PageVO pageVO) throws Exception {
-		// 인터페이스에서 상속 받은 메서드를 구현(아래)
+		// 인터페이스에서 상속받은 메서드를 구현(아래)
 		return memberDAO.selectMember(pageVO);
 	}
 
@@ -32,6 +32,12 @@ public class MemberServicesImpl implements IF_MemberService {
 	public int countMember() throws Exception {
 		// 인젝션으로 주입받은 DAO객체를 사용(아래)
 		return memberDAO.countMember();
+	}
+
+	@Override
+	public void insertMember(MemberVO memberVO) throws Exception {
+		// 클래스 상단에서 인젝션으로 주입받느 DAO객체를 사용(아래)
+		memberDAO.insertMember(memberVO);
 	}
 
 }

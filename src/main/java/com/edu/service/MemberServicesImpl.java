@@ -40,4 +40,10 @@ public class MemberServicesImpl implements IF_MemberService {
 		memberDAO.insertMember(memberVO);
 	}
 
+	@Override
+	public void deleteMember(String user_id) throws Exception {
+		// sqlSession스프링빈의 메서드를 이용해서 매퍼 쿼리를 실행(아래)
+		memberDAO.deleteMember(user_id);
+	}
+
 }

@@ -19,6 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.edu.service.IF_MemberService;
 import com.edu.vo.MemberVO;
+import com.edu.vo.PageVO;
 
 /**
  * 이 클래스는 오라클과 연동해서 CRUD를 테스트하는 클래스 입니다.
@@ -36,25 +37,53 @@ public class DataSourceTest {
 	private Logger logger = Logger.getLogger(DataSourceTest.class);
 	//dataSource 객체는 데이터베이스객체를 pool로 저장해서 사용할때 DataSource 클래스를 사용(아래)
 	@Inject //인젝트는 스프링에서 객체를 만드는 방법, 이전 자바에서는 new 키워드로 객체를 만들었고... 
-	DataSource dataSource;//Inject로 객체를 만들면 메모리 관리를 스프링이 대신해 줌.
+	private DataSource dataSource;//Inject로 객체를 만들면 메모리 관리를 스프링이 대신해 줌.
 	//Inject 자바8부터 지원, 그럼, 이전 자바7에서 @Autowired 로 객체를 만들었슴
-	@Inject //MemberService 서비스를 주입 받아서 객체를 사용합니다.(아래)
+	@Inject //MemberService서비스를 주입받아서 객체를 사용합니다.(아래)
 	private IF_MemberService memberService;
-	//스프링 코딩 시작 순서
-	//M-V-C 사이에 데이터를 입출력하는 임시저장 공간(VO클래스를-멤버변수+Get/Set메서드) 생성
-	//보통 ValueObject클래스는 DB테이블과 1:1로 매칭이 됩니다.
-	//그래서, 1. MemberVO.Java VO클래스를 생성.(필수)
-	//2. DB(마이바티스)쿼리를 만듭니다.(VO사용됨) - 20210608 시작
+	
+	@Test
+	public void deleteMember() throws Exception {
+		memberService.deleteMember("user_del");
+	}
+	@Test
+	public void insertMember() throws Exception {
+		MemberVO memberVO = new MemberVO();
+		//insert쿼리에 저장할 객체
+		memberVO.setUser_id("user_del");
+		memberVO.setUser_pw("1234");//스프링시큐리티5버전으로 암호화로 처리예정
+		memberVO.setEmail("user@test.com");
+		memberVO.setPoint(10);
+		memberVO.setEnabled(true);
+		memberVO.setLevels("ROLE_USER");
+		memberVO.setUser_name("삭제할사용자");
+		memberService.insertMember(memberVO);
+		selectMember();
+	}
+	//스프링 코딩 작업 순서(칠판으로 옮겨 놓았습니다.)
 	@Test
 	public void selectMember() throws Exception {
-		//회원관리 테이블에서 더미 입력한 100개의 레코드를 출력 메서드 테스트->회원관리목록이 출력
-		//현재 100명 검색기능, 페이징 기능 여기서 구현. 1페이지에서 10명씩 나오게 변경
-		//현재 몇 페이지, 검색어 임시저장 공간 -> DB에 페이징 조건, 검색 조건문
-		//변수를 2-3 이상은 바로 String 변수로 처리하지 않고, VO 만들어 사용.
-		//PageVO.java클래스를 만들어서 페이징 처리 변수와 검색어 변수 선언, Get/Set 생성
-		//PageVO 만들기 전 SQL쿼리로 가상으로 페이지를 한 번 구현해 보면서, 필요한 변수를 만들어야 합니다.
+		//회원관리 테이블에서 더미로 입력한 100개의 레코드를 출력 메서드 테스트->회원관리목록이 출력
+		//현재100명 검색기능, 페이징기능 여기서 구현. 1페이지에 10명씩 나오게변경
+		//현재 몇페이지, 검색어 임시저장 공간 -> DB에 페이징조건문, 검색조건문
+		//변수를 2-3이상은 바로 String변수로 처리하지않고, VO만들어 사용.
+		//PageVO.java클래스를 만들어서 페이징처리변수와 검색어변수 선언,Get/Set생성
+		//PageVO만들기전 SQL쿼리로 가상으로 페이지을 한번 구현해 보면서, 필요한 변수 만들어야 합니다.
+		//pageVO 객체를 만들어서 가상으로 초기값을 입력합니다.(아래)
+		PageVO pageVO = new PageVO();
 		
-		List<MemberVO> listMember = memberService.selectMember();
+		pageVO.setPage(1);//기본값으로 1페이지를 입력합니다.
+		pageVO.setPerPageNum(10);//UI하단사용 페이지 개수
+		pageVO.setQueryPerPageNum(10);//쿼리사용 페이지당 개수
+		pageVO.setTotalCount(memberService.countMember());//테스트하려고, 100명을 입력합니다.
+		pageVO.setSearch_type("user_id");//검색타입 all, user_id, user_name
+		pageVO.setSearch_keyword("user_del");//검색어
+		//위 setTotalCount위치가 다른 설정보다 상단이면, 에러발생 왜냐하면, calcPage()가 실행되는데, 실행시 위 3가지변수값이 저정되 있어야지 계산메서드가 정상작동되기때문입니다.
+		//위토탈카운트변수값은 startPage, endPage계산에 필수입니다. 
+		//매퍼쿼리<-DAO클래스<-Service클래스<-JUnit(나중엔 컨트롤러에서작업) 이제 역순으로 작업진행
+		//더 진행하기 전에 현재 pageVO객체에는 어떤값이 들어 있는 확인하고 사용하겠습니다.(아래)
+		logger.info("디버그: "+ pageVO.toString());
+		List<MemberVO> listMember = memberService.selectMember(pageVO);
 		listMember.toString();
 	}
 	
@@ -87,7 +116,6 @@ public class DataSourceTest {
 		rs = null;//메모리 반환
 		connection = null;//메모리 초기화
 	}
-	
 	@Test
 	public void dbConnectionTest() {
 		//데이터베이스 커넥션 테스트: 설정은 root-context의 빈(스프링클래스)를 이용
@@ -100,7 +128,6 @@ public class DataSourceTest {
 		}
 		
 	}
-	
 	@Test
 	public void junitTest() {
 		//로거는 장점>조건에 따라서 출력을 조정할 수 있음.

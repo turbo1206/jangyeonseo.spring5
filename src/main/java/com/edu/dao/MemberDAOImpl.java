@@ -14,7 +14,7 @@ import com.edu.vo.PageVO;
  * 이 클래스는 IF_memberDAO 인터페이스를 구현하는 클래스 입니다.
  * implements 키워드로 상속을 받습니다.
  * 단, DAO기능의 구현클래스는 스프링빈으로 등록이 필요. 그래서, @Repository
- * @author User
+ * @author 장연서
  *
  */
 @Repository

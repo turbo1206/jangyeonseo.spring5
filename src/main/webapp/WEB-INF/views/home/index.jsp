@@ -220,7 +220,7 @@ $(document).ready(function() {
 		</div>
 		<!-- //카카오톡상담및최근공지사항영역 -->
 	</div>
-	<!-- //메이콘텐츠영역 -->
+	<!-- //메인콘텐츠영역 -->
 	
 	<!-- 푸터메뉴및사업자정보영역 -->
 	<footer>
@@ -253,7 +253,5 @@ $(document).ready(function() {
 </div>
 <!-- //하단퀵메뉴영역 -->
 
-</body>
-</html>
 </body>
 </html>

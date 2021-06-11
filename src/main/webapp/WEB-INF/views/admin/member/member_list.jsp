@@ -114,25 +114,6 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
-
-  <!-- Control Sidebar 오른쪽 바둑판베뉴클릭시 나오는 내용 -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- demo.js에서 출력할 내용이 존재, demo.js사용않함. -->
-    <div class="text-center mt-4">
-    <h5>로그아웃</h5><hr class="mb-2"/>
-    <button type="button" class="btn btn-primary" id="btn_logout">로그아웃</button>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+<!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>

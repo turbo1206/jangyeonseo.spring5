@@ -20,7 +20,7 @@ import com.edu.vo.PageVO;
 /**
  * 이 클래스는 Admin관리자단을 접근하는 클래스
  * 변수 Object를 만들어서 jsp로 전송 <-> jsp 폼값을 받아서 Object로 처리
- * @author 장연서
+ * @author 김일국
  *
  */
 @Controller
@@ -32,35 +32,58 @@ public class AdminController {
 	@Inject
 	private IF_MemberService memberService;
 	
+	//아래 경로는 수정처리를 호출=DB를 변경처리 함.
+	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
+	public String updateMember() throws Exception {
+		
+		return null;
+	}
+	//아래 경로는 수정폼을 호출=화면에 출력만 렌더링만
+	@RequestMapping(value="/admin/member/member_update_form", method=RequestMethod.POST)
+	public String updateMemberForm() throws Exception {
+		
+		return "admin/member/member_update";//상대경로
+	}
+	@RequestMapping(value="/admin/member/member_delete", method=RequestMethod.POST)
+	public String deleteMember(MemberVO memberVO) throws Exception {
+		logger.info("디버그: " + memberVO.toString());
+		//MemberVO memberVO는 클래스형 변수: String user_id 스트링형 변수 같은 방식.
+		String user_id = memberVO.getUser_id();
+		//이 메서드는 회원상세보기페이지에서 삭제버튼을 클릭시 전송받은 memberVO값을 이용해서 삭제를 구현(아래)
+		//memberService.deleteMember(user_id);
+		return "redirect:/admin/member/member_list";
+	}
 	@RequestMapping(value="/admin/member/member_view", method=RequestMethod.GET)
-	public String viewMemberForm(Model model, @RequestParam("user_id")String user_id,@ModelAttribute("pageVO")PageVO pageVO) throws Exception {
+	public String viewMemberForm(Model model, @RequestParam("user_id")String user_id, @ModelAttribute("pageVO")PageVO pageVO) throws Exception{
+	//페이진입 시 받은 클래스변수값 PageVO pageVO
 		/*
-		 * 이 메서드는 리스트페이지에서 상세보기로 이동 할 때 보여주는 1개 레코드 값을 보여주는 구현을 합니다.
-		 * JUnit에서 테스트했던 readMember 방식을 이용합니다.
-		 * 다른점은 JUnit에서는 식별자 ID를 강제로 지정했지만, 이 메서드에서는 @RequestParam인터페이스를 이용해서 식별자 값을 받음.
+		 * 이 메서드는 리스트페이지에서 상세보기로 이동할때 보여주는 1개 레코드값을 보여주는 구현을 합니다.
+		 * JUnit에서 테스트했던 readMember 방식을 이용.
+		 * 다른점은 JUnit에서는 식별자 ID를 강제로 지정했지만, 이 메서드에서는 @RequsetParam인터페이스를 이용해서 식별자값을 받음.
 		 */
-		memberService.readMember(user_id);
-		//위 출력 값 memberVO 1개의 레코드를 model을 이용해서 member_view.jsp로 보냅니다.(아래)
+		//위 출력값 memberVO 1개의 레코드를 model를 이용해서 member_view.jsp 보냅니다.(아래)
 		model.addAttribute("memberVO", memberService.readMember(user_id));
+		//model.addAttribute("pageVO", pageVO);
+	//아래 페이지 반환시(렌더링) @ModelAttribute("pageVO")에 의해서 pageVO.page변수값으로 jsp보냅니다.
 		return "admin/member/member_view";//상태경로 폴더파일위치
 	}
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String selectMember(@ModelAttribute("pageVO")PageVO pageVO, Model model) throws Exception {
+	public String selectMember(@ModelAttribute("pageVO")PageVO pageVO,Model model) throws Exception {
 		/*
 		이 메서드는 2개 객체 생성하는 로직이 필요. 결과를 JSP로 보내는 기능을 수행
-		1객체: memberList객체를 생성해서 model을 통해서 jsp로 전송
- 		2객체: pageVO객체(prev,next,startPage,endPage)를 생성해서 model을 통해서 jsp로 전송
- 		2번객체부터 로직이 필요 -> memberList구하는 쿼리변수가 만들어지기 때문에 이것부터 구현
+		1객체: memberList객체를 생성해서 model을 통해서 jsp로 전송 
+		2객체: pageVO객체(prev,next,startPage,endPage)를 생성해서 model을 통해서 jsp로 전송
+		2번객체부터 로직이 필요 -> memberList구하는 쿼리변수가 만들어지기 때문에 이것부터구현
 		*/
-		if(pageVO.getPage() == null) {//jsp에서 전송값이 없을때만 초기값 입력
-			pageVO.setPage(1);//초기 값 1페이지 입력
+		if(pageVO.getPage() == null) {//jsp에서 클릭값이 없을때만 초기값 입력
+			pageVO.setPage(1);//초기값 1페이지 입력
 		}
-		//학습포인트: calcPage()로직(이해) < 변수(객체)값의 이동확인(코딩)
+		//학습포인트: calcPage()로직(이해) < 변수(객체)값의 이동확인(코딩사용)
 		pageVO.setQueryPerPageNum(5);//memberList객체+endPage구할때 필요
-		pageVO.setPerPageNum(5);//startPage,endPage구할때
-		//위 2개의 변수 값을 이용해서 아래 setTotalCount메서드에서 calcPage()호출 됨.
+		pageVO.setPerPageNum(5);//startPage구할때-UI하단 페이지번호개수
+		//위 2개의 변수값을 이용해서 아래 setTotalCount메서드에서 calcPage()호출됨
 		pageVO.setTotalCount(memberService.countMember(pageVO));
-		//calcPage 실행되면, prev, next 변수 값이 입력됩니다.
+		//calcPage 실행되면, prev, next변수 값이 입력됩니다.
 		List<MemberVO> listMember = memberService.selectMember(pageVO);
 		//위 setPerPageNum 20이면 next가 false(비활성화), 5이면 next가 true(활성화)
 		logger.info("디버그" + pageVO.toString());

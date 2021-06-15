@@ -66,20 +66,20 @@
                 </tr>
               </thead>
               <tbody>
-              	<!-- listMember객체 검색 빈 값일 때 -->
+              	<!-- listMember객체 검색 빈 값 일때 -->
               	<c:if test="${empty listMember}">
-              	<tr>	
-              		<td colspan="5" class="text-center">조회 된 값이 없습니다.</td>
-           		</tr>
+              	<tr>
+              		<td colspan="5" class="text-center">조회된 값이 없습니다.</td>
+              	</tr>
               	</c:if>
                 <!-- jstl반복문으로 listMember객체 바인딩 -->
                 <c:forEach var="memberVO" items="${listMember}">
-                <tr style="cursor: pointer;" onclick="location.replace('/admin/member/member_view?user_id=${memberVO.user_id}');">
-                  <td><c:out value="${memberVO.user_id}"/></td>
-                  <td><c:out value="${memberVO.user_name}"/></td>
-                  <td><c:out value="${memberVO.email}"/></td>
+                <tr style="cursor: pointer;" onclick="location.replace('/admin/member/member_view?page=${pageVO.page}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}&user_id=${memberVO.user_id}');">
+                  <td><c:out value="${memberVO.user_id}" /></td>
+                  <td><c:out value="${memberVO.user_name}" /></td>
+                  <td><c:out value="${memberVO.email}" /></td>
                   <td>${memberVO.levels}</td>
-                  <td><fmt:formatDate pattern="YYYY-MM-dd hh:mm:ss.SSSS" value="${memberVO.reg_date}"/></td>
+                  <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss.SSSS" value="${memberVO.reg_date}"/></td>
                 </tr>
                 </c:forEach>
               </tbody>
@@ -90,7 +90,8 @@
         <!-- //콘텐츠 내용 -->
         <!-- 페이징 처리 -->
         <div class="col-12 text-right">
-          <a href="/admin/member/member_insert" class="btn btn-primary mb-3">회원등록</a>
+          <a href="/admin/member/member_insert_form?page=${pageVO.page}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" class="btn btn-primary mb-3">회원등록</a>
+          
           <ul class="pagination justify-content-center">
           	  
               <li class="paginate_button page-item previous <c:out value="${pageVO.prev==false?'disabled':'' }" />" id="example2_previous">

@@ -108,13 +108,14 @@ $(document).ready(function(){
 			url:"/id_check?user_id="+user_id,//RestAPI서버(스프링클래스로제작)의 URL
 			dataType:"text",//결과값(0,1)을 받을때, 데이터형을 text, json, xml중 선택
 			success:function(result){
+				alert(result);//디버그용
 				if(result==0){//중복ID가 없다면 정상진행
 					$("#btn_insert").attr("disabled",false);//등록버튼 활성화
 					alert("사용가능한 ID입니다.");
 				}
 				if(result==1){//중복ID가 있다면 진행중지
 					$("#btn_insert").attr("disabled",true);//등록버튼 비활성화
-					alert("중복ID가 존재합니다. 다시 입력해 주세요!");
+					alert("올바르지 않거나,중복ID가 존재합니다. 다시 입력해 주세요!");
 				}
 			},
 			error:function(){

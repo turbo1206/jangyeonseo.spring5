@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
-
-<!-- Content Wrapper1. Contains page content -->
+<%@ include file="../include/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -29,6 +29,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">목록</h3>
+            
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0">
@@ -37,18 +38,19 @@
               <thead>
                 <tr>
                   <th class="text-center">BOARD_TYPE</th>
-                  <th class="text-center">게시판이름</th>
+                  <th class="text-center">게시판 이름</th>
                   <th class="text-center">출력순서</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- 아래 링크주소에 jsp에서 프로그램처리예정 -->
-                <tr style="cursor: pointer;" onclick="location.replace('/admin/bbs_type/bbs_type_update?board_type=notice);">
-                  <td>NOTICE</td>
-                  <td>공지사항</td>
-                  <td>1</td>
+                <c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
+                <tr style="cursor: pointer;" onclick="location.replace('/admin/bbs_type/bbs_type_update?board_type=${boardTypeVO.board_type}');">
+                  <td>${boardTypeVO.board_type}</td>
+                  <td>${boardTypeVO.board_name}</td>
+                  <td>${boardTypeVO.board_sun}</td>
                 </tr>
-                
+                </c:forEach>
               </tbody>
             </table>
           </div>
@@ -58,6 +60,7 @@
         <!-- 페이징 처리 -->
         <div class="col-12 text-right">
           <a href="/admin/bbs_type/bbs_type_insert" class="btn btn-primary mb-3">게시판생성</a>
+          
         </div>
         <!-- //페이징 처리 -->
       </div><!-- /.container-fluid -->
@@ -66,4 +69,4 @@
   </div>
   <!-- /.content-wrapper -->
 
-<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp" %>

@@ -8,7 +8,7 @@ import java.util.Date;
  * @author 장연서
  *
  */
-public class BoardVO {
+public class boardVO {
 	//멤버변수 생성
 	private Integer bno;//PK
 	private String title;

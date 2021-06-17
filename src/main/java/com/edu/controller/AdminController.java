@@ -25,7 +25,7 @@ import com.edu.vo.PageVO;
  * 디스페처 서블렛 클래스는 톰캣이 실행(web.xml)될때 제일 먼저 실행되는 클래스, 그래서, 게이트웨이라고 합니다.
  * 디스페처 서블릿 실행될때, 컨트롤러의 Request매핑경로를 재 등록합니다.
  * 변수 Object를 만들어서 jsp로 전송 <-> jsp 폼값을 받아서 Object로 처리
- * @author 김일국
+ * @author 장연서
  *
  */
 @Controller
@@ -43,7 +43,8 @@ public class AdminController {
 	//왜 board_type하지않고, bbs_type하는 이유는 왼쪽메뉴 고정시키는 로직에서 경로 board와 겹치지 않도록
 	@RequestMapping(value="/admin/bbs_type/bbs_type_list", method=RequestMethod.GET)
 	public String selectBoardTypeList(Model model) throws Exception {//목록폼1
-		model.addAttribute("listBoardTypeVO", boardTypeService.selectBoardType());
+		//아래 모델은 AOP 기능 중 ControllerAdvice 인터페이스로 구현했기 때문에 아래는 실행 안함.
+		//model.addAttribute("listBoardTypeVO", boardTypeService.selectBoardType());
 		return "admin/bbs_type/bbs_type_list";//상대경로일때는 views폴더가 root(최상위)
 	}
 	//bbs_type_list.jsp에서 게시판생성 버튼을 클릭했을때 이동하는 폼 경로 

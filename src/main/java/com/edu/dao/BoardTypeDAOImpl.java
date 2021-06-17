@@ -11,7 +11,7 @@ import com.edu.vo.BoardTypeVO;
 
 /**
  * 이 클래스는 게시판생성관리 쿼리의 인터페이스를 구현메서드가 있는 클래스 입니다.
- * @author User
+ * @author 장연서
  *
  */
 @Repository

@@ -8,7 +8,7 @@ import java.util.Date;
  * @author 장연서
  *
  */
-public class boardVO {
+public class BoardVO {
 	//멤버변수 생성
 	private Integer bno;//PK
 	private String title;
@@ -19,6 +19,28 @@ public class boardVO {
 	private Date reg_date;
 	private Date update_date;
 	private String board_type;//FK
+	//private String save_file_name;
+	//게시물 1개 등록시, 첨부파일 1개이상 필요. 그래서, DB에는 없는 필드를 1개 만듭니다.
+	//그래서, DB(테이블)에는 없는 가상 멤버변수(필드)를 2개 만듭니다.
+	private String[] save_file_names;//Null가능
+	private String[] real_file_names;//Null가능
+	
+	public String[] getSave_file_names() {
+		return save_file_names;
+	}
+
+	public void setSave_file_names(String[] save_file_names) {
+		this.save_file_names = save_file_names;
+	}
+
+	public String[] getReal_file_names() {
+		return real_file_names;
+	}
+
+	public void setReal_file_names(String[] real_file_names) {
+		this.real_file_names = real_file_names;
+	}
+
 	//디버그용 toString()생성
 	@Override
 	public String toString() {

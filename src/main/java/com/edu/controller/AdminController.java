@@ -49,11 +49,10 @@ public class AdminController {
 			pageVO.setPage(1);
 		}
 		pageVO.setPerPageNum(5);//UI 하단에서 보여 줄 페이징 번호 크기
-		//토탈 카운트를 구하기 전 2개의 값이 필수로 필요(아래)
-		pageVO.setQueryPerPageNum(5);
+		pageVO.setQueryPerPageNum(5);//토탈 카운트를 구하기 전 2개의 값이 필수로 필요(아래)
 		pageVO.setTotalCount(boardService.countBoard(pageVO));
  		
-		model.addAttribute("listBoardVO", null);
+		model.addAttribute("listBoardVO", boardService.selectBoard(pageVO));
 		return "admin/board/board_list";//.jsp 생략
 	}
 	//jsp에서 게시판생성관리에 Get/Post 접근할때 URL을 bbs_type로 지정합니다.
@@ -194,6 +193,6 @@ public class AdminController {
 	public String admin(Model model) throws Exception {//에러발생시 Exception클래스의 정보를 스프링으로 보내게 됩니다.		
 		//아래 상대경로에서 /WEB-INF/views/폴더가 루트(생략prefix접두어) 입니다.
 		//아래 상대경로 home.jsp에서 .jsp (생략suffix접미어) 입니다.
-		return "admin/home";//리턴 경로=접근경로는 반드시 상대경로로 표시
+		return "admin/home";//리턴 경로=접근경로는 반드시 상대경로로 표시	
 	}
 }

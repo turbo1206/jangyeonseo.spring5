@@ -70,10 +70,10 @@
 <%@ include file="../include/footer.jsp" %>
 <script>
 $(document).ready(function(){
-	$("#btn_delete").click(function() {
-			if(confirm("정말로 삭제하시겠습니까?")) {
-			var from_write = $("form[name='form_write']");
-			form_write.attr("action","admin/bbs_type/bbs_type_delete");
+	$("#btn_delete").click(function(){
+		if(confirm("정말로 삭제하시겠습니까?")) {
+			var form_write = $("form[name='form_write']");
+			form_write.attr("action","/admin/bbs_type/bbs_type_delete");
 			form_write.submit();
 		}
 	});

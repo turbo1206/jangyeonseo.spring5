@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.edu.service.IF_BoardService;
 import com.edu.service.IF_BoardTypeService;
 import com.edu.service.IF_MemberService;
+import com.edu.util.CommonUtil;
+import com.edu.vo.AttachVO;
 import com.edu.vo.BoardTypeVO;
+import com.edu.vo.BoardVO;
 import com.edu.vo.MemberVO;
 import com.edu.vo.PageVO;
 
@@ -40,26 +43,62 @@ public class AdminController {
 	@Inject
 	private IF_BoardTypeService boardTypeService;
 	@Inject
-	private IF_BoardService boardService;//DI으로 클래스를 주입해서 객체로 생성
-	//게시물 목록은 폼으로 접근하지 않고 URL로 접근하기 때문에 GET 방식으로 처리
+	private IF_BoardService boardService;//DI으로 스프링빈을 주입해서 객체로 생성
+	@Inject
+	private CommonUtil commonUtil;
+	
+	//게시물 상세보기 폼으로 접근하지 않고 URL쿼리 스트링으로 접근(GET)
+	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
+	public String board_view(@RequestParam("bno")Integer bno,@ModelAttribute("pageVO")PageVO pageVO, Model model) throws Exception {
+		BoardVO boardVO = boardService.readBoard(bno);
+		
+		//첨부파일 부분 attach데이터도 board_view.jsp로 이동해야 함(아래)
+		List<AttachVO> files = boardService.readAttach(bno);
+		logger.info("debug19: "+ files);
+		//배열객체 생성구조: String[] 배열명 = new String[배열크기];
+		//개발자가 만든 클래스형 객체 boardVO는 개발자가 만든 메서드 사용
+		//반면, List<AttachVO> files List클래스형 객체 files는 내장형 메서드 = .size()
+		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
+		//attach테이블안의 해당bno게시물의 첨부파일 이름 파싱해서 jsp로 보내주는 과정(아래)
+		int cnt = 0;
+		for(AttachVO file_name:files) {//files다수레코드 에서 1개의 레코드씩 추출
+			save_file_names[cnt] = file_name.getSave_file_name();
+			real_file_names[cnt] = file_name.getReal_file_name();
+			cnt = cnt + 1;//cnt++;
+		}
+		//위 for은 세로데이터(다수레코드)를 가로데이터(1레코드이면, 배열)에 담아서 1개 레코드boardVO로 만드게 목적.
+		boardVO.setSave_file_names(save_file_names);//파싱한 결과 Set//다운로드로직
+		boardVO.setReal_file_names(real_file_names);//boardVO에 Set//화면에보이는데
+		model.addAttribute("boardVO", boardVO);//게시물 + 첨부파일 명2개이상
+		//업로드한 파일이 이미지인지 아닌지 확인하는 용도의 데이터 입니다.아래(목적:이미지일때 미리보기 img태그를 사용 하기위해서)
+		model.addAttribute("checkImgArray", commonUtil.getCheckImgArray());
+		return "admin/board/board_view";//.jsp생략
+	}
+	
+	//게시물 목록은 폼으로 접근하지 않고 URL로 접근하기 때문에 GET방식으로처리
 	@RequestMapping(value="/admin/board/board_list", method=RequestMethod.GET)
-	public String board_list(@ModelAttribute("PageVO")PageVO pageVO, Model model) throws Exception {
-		//페이징처리를 위한 기본 값 추가
+	public String board_list(@ModelAttribute("pageVO")PageVO pageVO, Model model) throws Exception {
+		//게시판타입이 null일때 기본값으로 notice를 추가
+		if(pageVO.getBoard_type() == null) {
+			pageVO.setBoard_type("notice");
+		}
+		//페이징처리를 위한 기본값 추가
 		if(pageVO.getPage() == null) {
 			pageVO.setPage(1);
 		}
-		pageVO.setPerPageNum(5);//UI 하단에서 보여 줄 페이징 번호 크기
-		pageVO.setQueryPerPageNum(5);//토탈 카운트를 구하기 전 2개의 값이 필수로 필요(아래)
+		pageVO.setPerPageNum(5);//UI하단에서 보여줄 페이징 번호 크기
+		pageVO.setQueryPerPageNum(5);//토탈 카운트를 구하기전 필수로 필요
 		pageVO.setTotalCount(boardService.countBoard(pageVO));
- 		
+		
 		model.addAttribute("listBoardVO", boardService.selectBoard(pageVO));
-		return "admin/board/board_list";//.jsp 생략
+		return "admin/board/board_list";//.jsp생략
 	}
 	//jsp에서 게시판생성관리에 Get/Post 접근할때 URL을 bbs_type로 지정합니다.
 	//왜 board_type하지않고, bbs_type하는 이유는 왼쪽메뉴 고정시키는 로직에서 경로 board와 겹치지 않도록
 	@RequestMapping(value="/admin/bbs_type/bbs_type_list", method=RequestMethod.GET)
 	public String selectBoardTypeList(Model model) throws Exception {//목록폼1
-		//아래 모델은 AOP 기능 중 ControllerAdvice 인터페이스로 구현했기 때문에 아래는 실행 안함.
+		//아래 모델은 AOP기능중 ControllerAdvice 인터페이스로 구현했기 때문에 아래는 실행안함.
 		//model.addAttribute("listBoardTypeVO", boardTypeService.selectBoardType());
 		return "admin/bbs_type/bbs_type_list";//상대경로일때는 views폴더가 root(최상위)
 	}
@@ -193,6 +232,6 @@ public class AdminController {
 	public String admin(Model model) throws Exception {//에러발생시 Exception클래스의 정보를 스프링으로 보내게 됩니다.		
 		//아래 상대경로에서 /WEB-INF/views/폴더가 루트(생략prefix접두어) 입니다.
 		//아래 상대경로 home.jsp에서 .jsp (생략suffix접미어) 입니다.
-		return "admin/home";//리턴 경로=접근경로는 반드시 상대경로로 표시	
+		return "admin/home";//리턴 경로=접근경로는 반드시 상대경로로 표시
 	}
 }

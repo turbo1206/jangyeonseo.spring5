@@ -84,7 +84,7 @@
                 </c:forEach>
               </tbody>
             </table>
-            발생한 세션 값 확인<c:out value="${session_board_type}"></c:out>
+
           </div>
           <!-- /.card-body -->
         </div>

@@ -32,8 +32,6 @@ public class PageVO {
 
 	//Get,Set용 메서드 추가
 	public String getBoard_type() {
-		//세션값이 서버가 개발시 리스타트 될 때 값이 사라지기 때문에
-		if(board_type==null) {board_type="";}
 		return board_type;
 	}
 

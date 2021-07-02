@@ -133,9 +133,14 @@ $(document).ready(function(){
 	$("#btn_leave").click(function(){
 		//alert("삭제버튼 준비중 입니다.");
 		var form_leave = $("form[name='join_form']");
-		$("select[name='enabled']").val(0); //Set
-		alert($("select[name='enabled']").val()); //Get
+		$("option:eq(0)","select[name='enabled']").val("false");
+		//$("select[name='enabled']").val(false);//에러Set input태그O
+		//$("select[name='enabled']").html("<option value='false'>탈퇴</option>");//select Set
+		//alert($("select[name='enabled']").val());//Get
 		//위 값을 false, 0 둘중 1개 로 변경 후 submit예정.
+		form_leave.submit();//삭제는 아니고, enabled 필드값을 수정합니다.
+		//탈퇴를 했다면, 로그아웃처리도 같이 되어야 함.
+		location.replace("/logout");
 	});
 });
 </script>

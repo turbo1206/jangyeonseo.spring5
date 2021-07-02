@@ -104,7 +104,7 @@ $(document).ready(function(){
 		form_update.submit();
 	});
 	$("#btn_list").click(function(){
-		/* 폼을 get방식을 전송시 암호와 같은 정보가 URL 쿼리 스트링에 노출되어서 주석 처리
+		/* 폼을 get방식을 전송시 암호와 같은 정보가 URL쿼리 스트링에 노출되어서 주석처리 
 		form_update.attr("action","/admin/member/member_list");
 		form_update.attr("method","get");
 		form_update.submit();

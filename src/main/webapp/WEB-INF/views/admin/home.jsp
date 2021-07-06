@@ -68,8 +68,10 @@
         </div>
         <!-- //최근 등록한 회원목록 -->
         <!-- 최근게시물리스트(공지사항+겔러리+QnA게시판) 현재 2개 2개의 게시판이 나오게 됨 -->
+        <!-- include와 import의 차이점: include는 소스를 조립 후 컴파일, import는 개발 파일을 컴파일 후 조립. -->
         <c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
-        	<c:import url="/admin/latest/latest_board" />
+        	<c:out value=""></c:out>
+        	<c:import url="/admin/latest/latest_board?board_type=${boardTypeVO.board_type}&board_name=${boardTypeVO.board_type}" />
         </c:forEach>        
         <!-- //최근게시물리스트 -->
       </div><!-- /.container-fluid -->

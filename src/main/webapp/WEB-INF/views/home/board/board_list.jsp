@@ -45,8 +45,8 @@
 						<a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&search_type=${pageVO.search_type}">
 						${boardVO.title}
 						</a> </td>
-						<td>${boardVO.writer }</td>
-						<td>${ }</td>
+						<td>${boardVO.writer}</td>
+						<td>${boardVO.view_count}</td>
 						<td>
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.reg_date}"/> 
 						</td>

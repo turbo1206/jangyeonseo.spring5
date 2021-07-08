@@ -128,7 +128,7 @@ $(document).ready(function(){
 			$.ajax({
 				type:"get",
 				url:"/id_check_2010?user_id="+$(this).val(),
-				dataType:"text", //전송받는 데이터형
+				dataType:"json",//전송받는 데이터형
 				success:function(result) {
 					//alert(result.memberCnt);//JSON.stringify(result)
 					if(result.memberCnt == 0) {//중복ID가 존재하지 않으면

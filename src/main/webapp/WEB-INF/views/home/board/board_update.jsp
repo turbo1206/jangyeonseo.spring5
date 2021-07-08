@@ -23,7 +23,7 @@
 					<li class="clear">
 						<label for="content_lbl" class="tit_lbl pilsoo_item">내용</label>
 						<div class="app_content">
-							<textarea name="content" id="content_lbl" class="w100p" placeholder="내용을 입력해주세요." required>${boardVO.content}</textarea></div>
+							<textarea readonly value="${boardVO.writer}" name="content" id="content_lbl" class="w100p" placeholder="내용을 입력해주세요." required>${boardVO.content}</textarea></div>
 					</li>
 					<li class="clear">
 						<label for="name_lbl" class="tit_lbl pilsoo_item">작성자명</label>

@@ -68,7 +68,15 @@ public class HomeController {
 	
 	//게시물 수정 처리 POST 추가
 	@RequestMapping(value="/home/board/board_update",method=RequestMethod.POST)
-	public String board_update(@RequestParam("file")MultipartFile[] files,PageVO pageVO,BoardVO boardVO,RedirectAttributes rdat) throws Exception {
+	public String board_update(HttpServletRequest request, @RequestParam("file")MultipartFile[] files,PageVO pageVO,BoardVO boardVO,RedirectAttributes rdat) throws Exception {
+		//로그인한 세션 ID와 게시물의 boardVO.writer사용자와 비교해서 같으면 계속, 틀리면 멈춤
+		HttpSession session = request.getSession();
+		if(!boardVO.getWriter().equals(session.getAttribute("session_userid"))) {
+			
+			rdat.addAttribute("msgError", "게시물은 본인들만 수정 가능합니다."); //가(이) 성공했습니다.
+			return "";
+		}//else로 묶을 필요가 없습니다. 왜? 위 return을 만나면, 이후 실행이 안되고 메서드가 종료 됨.
+		
 		//첨부파일 처리, delFiles만드는 이유는 첨부파일은 수정시, 기존파일 삭제 후 입력해야 하기 때문에
 		List<AttachVO> delFiles = boardService.readAttach(boardVO.getBno());
 		//폼에서 전송받은 첨부파일 files 가로배치로 만들기 위해서 배열변수 생성
